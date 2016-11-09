@@ -169,6 +169,18 @@
   (setq purpose-mode nil)
   )
 
+;; 添加解决Error
+(defalias 'display-buffer-in-major-side-window 'window--make-major-side-window)
+;; auctex
+(setq TeX-source-correlate-mode t)
+(setq TeX-source-correlate-start-server t)
+(setq TeX-view-program-list '(("Okular" "okular --unique %o#src:%n%b")
+                              ("Skim" "displayline -b -g %n %o %b")))
+(setq TeX-view-program-selection
+      (quote
+       ((output-pdf "Skim")
+        (output-dvi "Okular")
+        (output-html "xdg-open"))))
 (defun dotspacemacs/user-config ()
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
